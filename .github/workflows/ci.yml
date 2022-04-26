@@ -1,0 +1,29 @@
+name: Fizzbuzz CI
+
+on: [push]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: php-actions/composer@v6
+
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v3
+        env:
+          TEST_NAME: Fizzbuzz
+        with:
+          version: 7.5.20
+          php_extensions: xdebug
+          bootstrap: vendor/autoload.php
+          configuration: test/phpunit.xml
+          php_version: "7.1"
+      - name: Check style
+        run: vendor/bin/phpcs -q --parallel=2 --standard=PSR2 src test
+      - name: phpstan
+        run: vendor/bin/phpstan analyze -c phpstan.neon
+      - name: psalm
+        run: vendor/bin/psalm --threads=2 --no-progress

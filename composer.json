@@ -1,0 +1,39 @@
+{
+    "name": "php10-de/fizzbuzz",
+    "description": "Prints the numbers from 1 to 100",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Test\\": "test/"
+        }
+    },
+    "authors": [
+        {
+            "name": "php10",
+            "email": "ckf@php10.de",
+            "homepage": "https://php10.de/"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "platform": {
+            "php": "7.1.33"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5",
+        "squizlabs/php_codesniffer": "^3.6",
+        "phpstan/phpstan": "^1.4",
+        "psalm/plugin-phpunit": "^0.16.1"
+    },
+    "scripts": {
+        "test": "phpunit --configuration test/phpunit.xml --bootstrap vendor/autoload.php --test-suffix Test.php,.phpt --coverage-text"
+    },
+    "license": "MIT"
+}
