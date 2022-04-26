@@ -3,123 +3,127 @@
 namespace App\Test;
 
 use App\Fizzbuzz;
+use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 
-class FizzbuzzTest extends \PHPUnit\Framework\TestCase
+class FizzbuzzTest extends TestCase
 {
 
-    const FIZZBUZZ100 = [
+    public const FIZZBUZZ100 = [
         1,
         2,
-        "Fizz",
+        'Fizz',
         4,
-        "Buzz",
-        "Fizz",
+        'Buzz',
+        'Fizz',
         7,
         8,
-        "Fizz",
-        "Buzz",
+        'Fizz',
+        'Buzz',
         11,
-        "Fizz",
+        'Fizz',
         13,
         14,
-        "FizzBuzz",
+        'FizzBuzz',
         16,
         17,
-        "Fizz",
+        'Fizz',
         19,
-        "Buzz",
-        "Fizz",
+        'Buzz',
+        'Fizz',
         22,
         23,
-        "Fizz",
-        "Buzz",
+        'Fizz',
+        'Buzz',
         26,
-        "Fizz",
+        'Fizz',
         28,
         29,
-        "FizzBuzz",
+        'FizzBuzz',
         31,
         32,
-        "Fizz",
+        'Fizz',
         34,
-        "Buzz",
-        "Fizz",
+        'Buzz',
+        'Fizz',
         37,
         38,
-        "Fizz",
-        "Buzz",
+        'Fizz',
+        'Buzz',
         41,
-        "Fizz",
+        'Fizz',
         43,
         44,
-        "FizzBuzz",
+        'FizzBuzz',
         46,
         47,
-        "Fizz",
+        'Fizz',
         49,
-        "Buzz",
-        "Fizz",
+        'Buzz',
+        'Fizz',
         52,
         53,
-        "Fizz",
-        "Buzz",
+        'Fizz',
+        'Buzz',
         56,
-        "Fizz",
+        'Fizz',
         58,
         59,
-        "FizzBuzz",
+        'FizzBuzz',
         61,
         62,
-        "Fizz",
+        'Fizz',
         64,
-        "Buzz",
-        "Fizz",
+        'Buzz',
+        'Fizz',
         67,
         68,
-        "Fizz",
-        "Buzz",
+        'Fizz',
+        'Buzz',
         71,
-        "Fizz",
+        'Fizz',
         73,
         74,
-        "FizzBuzz",
+        'FizzBuzz',
         76,
         77,
-        "Fizz",
+        'Fizz',
         79,
-        "Buzz",
-        "Fizz",
+        'Buzz',
+        'Fizz',
         82,
         83,
-        "Fizz",
-        "Buzz",
+        'Fizz',
+        'Buzz',
         86,
-        "Fizz",
+        'Fizz',
         88,
         89,
-        "FizzBuzz",
+        'FizzBuzz',
         91,
         92,
-        "Fizz",
+        'Fizz',
         94,
-        "Buzz",
-        "Fizz",
+        'Buzz',
+        'Fizz',
         97,
         98,
-        "Fizz",
-        "Buzz"
+        'Fizz',
+        'Buzz'
     ];
-    
+
     /**
-     * getMethod
+     * use reflection to use protected method
      *
-     * @param  string $name
-     * @return object
+     * @param string $name
+     *
+     * @return \ReflectionMethod
+     * @throws \ReflectionException
      */
-    protected static function getMethod($name)
+    protected static function getMethod(string $name): \ReflectionMethod
     {
         $fizzbuzz = new Fizzbuzz();
-        $class    = new \ReflectionClass($fizzbuzz);
+        $class    = new ReflectionClass($fizzbuzz);
         $method   = $class->getMethod($name);
         $method->setAccessible(true);
         return $method;
@@ -130,7 +134,7 @@ class FizzbuzzTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function testFizzbuzz100()
+    public function testFizzbuzz100(): void
     {
         $fizzbuzzReflection = self::getMethod('generate');
         $fizzbuzz           = new Fizzbuzz();

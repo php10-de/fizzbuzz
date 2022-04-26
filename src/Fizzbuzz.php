@@ -1,43 +1,29 @@
 <?php
+declare(strict_types = 1);
 
 namespace App;
 
-use \ErrorException;
+use ErrorException;
 
 /**
- * Fizzbuzz Class to print the numbers from 1 to 100.
+ * Fizzbuzz class to print the numbers from 1 to 100.
  *
  */
 class Fizzbuzz
 {
-    const LIMIT = 100;
-
-    /**
-     * Set strict mode in constructor and initialize dp
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        error_reporting(E_ALL);
-        set_error_handler(function ($severity, $message, $file, $line) {
-            throw new ErrorException($message, 0, $severity, $file, $line);
-        });
-    }
+    public const LIMIT = 100;
     
     /**
-     * generate
+     * generate the Fizzbuzz items
      *
      * @return array<int|string>
      */
-    protected function generate()
+    protected function generate(): array
     {
         $items = [];
-        $isMultipleOf3 = false;
-        $isMultipleOf5 = false;
         for ($i = 1; $i <= self::LIMIT; $i++) {
-            $isMultipleOf3 = ($i % 3 == 0);
-            $isMultipleOf5 = ($i % 5 == 0);
+            $isMultipleOf3 = ($i % 3 === 0);
+            $isMultipleOf5 = ($i % 5 === 0);
             if ($isMultipleOf3 && $isMultipleOf5) {
                 $items[] = 'FizzBuzz';
             } elseif ($isMultipleOf3) {
@@ -56,11 +42,11 @@ class Fizzbuzz
      *
      * @return void
      */
-    public function fizzbuzzHtml()
+    public function fizzbuzzHtml(): void
     {
         $items = $this->generate();
         foreach ($items as $item) {
-            echo $item . "<br>";
+            echo $item . '<br>';
         }
     }
 }
